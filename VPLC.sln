@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VPLC", "VPLC\VPLC.vcxproj", "{5E447C97-1B8E-47DE-A373-EEB96280B95E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E447C97-1B8E-47DE-A373-EEB96280B95E}.Debug|x64.ActiveCfg = Debug|x64
+		{5E447C97-1B8E-47DE-A373-EEB96280B95E}.Debug|x64.Build.0 = Debug|x64
+		{5E447C97-1B8E-47DE-A373-EEB96280B95E}.Release|x64.ActiveCfg = Release|x64
+		{5E447C97-1B8E-47DE-A373-EEB96280B95E}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {229ABA00-93E5-4573-9C2E-25E8A7DB75F9}
+	EndGlobalSection
+EndGlobal
