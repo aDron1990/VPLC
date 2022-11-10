@@ -22,11 +22,11 @@ public:
 	std::vector<std::vector<AnalogQuit>> AQ;
 	std::vector<std::vector<AnalogQuitLocal>> AQL;
 
-	Global G;
-	GlobalLocal GL;
+	Global* G;
+	GlobalLocal* GL;
 
-	PLC(std::string remanentFilePath)
-	{
+    PLC(std::string remanentFilePath)
+    {
         std::ifstream settingsFile;
         std::stringstream settingsStream;
 
@@ -34,6 +34,7 @@ public:
         if (settingsFile.is_open())
         {
             settingsStream << settingsFile.rdbuf();
+            std::cerr << "Start reading remanent file" << std::endl;
         }
         else
         {
@@ -41,18 +42,51 @@ public:
         }
         settingsFile.close();
 
-        std::string rawJson = settingsStream.str();
-        JSONCPP_STRING err;
-        Json::Value root;
-
-        Json::Reader reader;
-        reader.parse(rawJson, root);
-        AI.push_back(std::vector<AnalogInput>{});
-        for (int i = 0; i < root["AI"].size(); i++)
+        try
         {
-            AI[0].push_back(AnalogInput{});
-            int a = root["AI"][i]["iSt"].asInt();
-            AI[0][i].fiz = root["AI"][i]["iFiz"].asInt();
+            std::string rawJson = settingsStream.str();
+            JSONCPP_STRING err;
+            Json::Value root;
+
+            Json::Reader reader;
+            reader.parse(rawJson, root);
+
+            G = new Global{ root["G"] };
+            GL = new GlobalLocal{ root["GL"] };
+
+            AI.resize(GL->Stations);
+            AIL.resize(GL->Stations);
+            AQ.resize(GL->Stations);
+            AQL.resize(GL->Stations);
+            for (int i = 0; i < GL->Stations; i++)
+            {
+                AI[i] = std::vector<AnalogInput>();
+                AIL[i] = std::vector<AnalogInputLocal>();
+                AQ[i] = std::vector<AnalogQuit>();
+                AQL[i] = std::vector<AnalogQuitLocal>();
+            }
+            for (int i = 0; i < root["AI"].size(); i++)
+            {
+                AI[root["AI"][i]["iSt"].asInt()].push_back(AnalogInput{ root["AI"][i] });
+                AIL[root["AI"][i]["iSt"].asInt()].push_back(AnalogInputLocal{ root["AI"][i] });
+            }
+            for (int i = 0; i < root["AQ"].size(); i++)
+            {
+                AQ[root["AQ"][i]["iSt"].asInt()].push_back(AnalogQuit{ root["AQ"][i] });
+                AQL[root["AQ"][i]["iSt"].asInt()].push_back(AnalogQuitLocal{ root["AQ"][i] });
+            }
+        }
+        catch(...)
+        {
+            std::cerr << "Json file read error" << std::endl;
         }
 	}
+
+    ~PLC()
+    {
+        delete G;
+        delete GL;
+    }
 };
+
+typedef int(*subProgram_process)(PLC* plc);

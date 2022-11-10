@@ -18,11 +18,11 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="src\Module.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\plcLifeCycle\plc_init.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="include\plc_types\PLC.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
@@ -42,6 +42,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="include\plc_types\structures\G.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Module.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

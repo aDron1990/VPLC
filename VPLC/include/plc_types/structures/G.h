@@ -1,9 +1,12 @@
 #pragma once
 
 #include <array>
+#include <json/json.h>
 
 class Global
 {
+public:
+
 	std::array<unsigned short, 4> NHmodule = { 0 };
 
 	unsigned int NoPart = 0;
@@ -21,4 +24,9 @@ class Global
 	unsigned int uRes = 0;
 	int iRes = 0;
 	float rRes = 0;
+
+	Global(Json::Value& node)
+	{
+		NoPart = node["NoPart"].asInt();
+	}
 };

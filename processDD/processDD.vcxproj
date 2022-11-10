@@ -13,23 +13,23 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{5e447c97-1b8e-47de-a373-eeb96280b95e}</ProjectGuid>
-    <RootNamespace>VPLC</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <ProjectGuid>{3708b921-36f2-4fe7-9e04-48e6cda65229}</ProjectGuid>
+    <RootNamespace>processDD</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -44,11 +44,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\modules\</OutDir>
     <IntDir>$(SolutionDir)bin\int\$(ProjectName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\modules\</OutDir>
     <IntDir>$(SolutionDir)bin\int\$(ProjectName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -57,13 +57,11 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)include;$(SolutionDir)VPLC\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>jsoncpp_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -74,56 +72,17 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)include;$(SolutionDir)include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)include;$(SolutionDir)VPLC\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>jsoncpp_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Module.cpp" />
-    <ClCompile Include="src\main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\plc_types\PLC.h" />
-    <ClInclude Include="include\plc_types\structures\AI.h" />
-    <ClInclude Include="include\plc_types\structures\AIL.h" />
-    <ClInclude Include="include\plc_types\structures\AQ.h" />
-    <ClInclude Include="include\plc_types\structures\AQL.h" />
-    <ClInclude Include="include\plc_types\structures\G.h" />
-    <ClInclude Include="include\plc_types\structures\GL.h" />
-    <ClInclude Include="src\Module.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="res\remanent.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\processAI\processAI.vcxproj">
-      <Project>{b36b9c40-37e0-4edc-a4a5-b09d49eac05b}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\processAQ\processAQ.vcxproj">
-      <Project>{77dcc4c0-b6fe-4313-83cb-73e574733a74}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\processDA\processDA.vcxproj">
-      <Project>{3ddef9fd-5e3d-4c1d-81b0-9656291a57b2}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\processDD\processDD.vcxproj">
-      <Project>{3708b921-36f2-4fe7-9e04-48e6cda65229}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\processDI\processDI.vcxproj">
-      <Project>{7ca5a4e0-28de-404e-9b51-2c5d2a834253}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\processDQ\processDQ.vcxproj">
-      <Project>{968b05ff-7dbc-4fad-8452-ac7a49991429}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\processFC\processFC.vcxproj">
-      <Project>{e6ba68be-6579-483e-b658-b3924eda5249}</Project>
-    </ProjectReference>
+    <ClCompile Include="processDD.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
