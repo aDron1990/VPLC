@@ -86,7 +86,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Module.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +96,7 @@
     <ClInclude Include="include\plc_types\structures\AQL.h" />
     <ClInclude Include="include\plc_types\structures\G.h" />
     <ClInclude Include="include\plc_types\structures\GL.h" />
+    <ClInclude Include="include\tools\bits.h" />
     <ClInclude Include="src\Module.h" />
   </ItemGroup>
   <ItemGroup>
