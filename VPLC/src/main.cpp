@@ -1,8 +1,8 @@
-
-
 #include "plc_types/PLC.h"
 #include "Module.h"
 #include "tools/bits.h"
+#include "socket/ExchangeVPLC.h"
+#include "socket/RecvVPLC.h"
 
 #include <fstream>
 #include <sstream>
@@ -11,7 +11,11 @@
 #include <ctime>
 #include <thread>
 
-void SocketProc() {}
+void SocketProc() 
+{
+	
+}
+
 void ModbasProc() {}
 void MQTTProc() {}
 
