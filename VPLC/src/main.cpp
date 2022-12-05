@@ -1,3 +1,5 @@
+
+
 #include "plc_types/PLC.h"
 #include "Module.h"
 #include "tools/bits.h"
@@ -16,7 +18,6 @@ void MQTTProc() {}
 int main(int argc, char** argv)
 {
 	PLC plc{ "res/remanent.json" };
-
 
 	std::thread SocketThread{ SocketProc };
 	std::thread ModbasThread{ ModbasProc };
